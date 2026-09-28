@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
-from Login import BACKEND_URL
+from config import BACKEND_URL
+
 st.markdown("<h1 style='text-align: center;'>Notes App</h1>", unsafe_allow_html=True)
 left, center, right = st.columns([1, 2, 1])
 with center:

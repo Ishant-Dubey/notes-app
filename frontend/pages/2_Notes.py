@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
-from Login import BACKEND_URL
+from config import BACKEND_URL
+
 st.set_page_config(layout="wide")
 
 all_notes = None
