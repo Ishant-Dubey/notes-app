@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-BACKEND_URL = st.secrets("BACKEND_URL")
+BACKEND_URL = st.secrets["BACKEND_URL"]
 
 st.markdown("<h1 style='text-align: center;'>Notes App</h1>", unsafe_allow_html=True)
 left, center, right = st.columns([1, 2, 1])
