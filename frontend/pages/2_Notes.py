@@ -1,13 +1,13 @@
 import streamlit as st
 import requests
-
+from Login import BACKEND_URL
 st.set_page_config(layout="wide")
 
 all_notes = None
 if st.session_state.get("logged_in", False):
     token = st.session_state["access_token"]
     all_notes = requests.get(
-        "http://127.0.0.1:8000/notes", headers={"Authorization": f"Bearer {token}"}
+        BACKEND_URL, headers={"Authorization": f"Bearer {token}"}
     )
 
 else:
@@ -49,7 +49,7 @@ if all_notes:
                             icon=":material/done_outline:",
                         ):
                             response = requests.put(
-                                f"http://127.0.0.1:8000/notes/{note['id']}",
+                                f"{BACKEND_URL}/{note['id']}",
                                 json={"title": title, "content": content},
                                 headers={"Authorization": f"Bearer {token}"},
                             )
@@ -75,7 +75,7 @@ if all_notes:
 
                 if delete_note:
                     response = requests.delete(
-                        f"http://127.0.0.1:8000/notes/{note['id']}",
+                        f"{BACKEND_URL}/{note['id']}",
                         headers={"Authorization": f"Bearer {token}"},
                     )
 
@@ -96,7 +96,7 @@ if all_notes:
 
             if st.button("Done", key="done_key", icon=":material/done_outline:"):
                 response = requests.post(
-                    "http://127.0.0.1:8000/notes",
+                    f"{BACKEND_URL}/notes",
                     json={"title": title, "content": content},
                     headers={"Authorization": f"Bearer {token}"},
                 )

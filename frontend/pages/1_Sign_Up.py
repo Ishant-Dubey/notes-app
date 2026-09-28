@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-
+from Login import BACKEND_URL
 st.markdown("<h1 style='text-align: center;'>Notes App</h1>", unsafe_allow_html=True)
 left, center, right = st.columns([1, 2, 1])
 with center:
@@ -22,7 +22,7 @@ with center:
 
         if st.button("Sign Up", use_container_width=True, icon=":material/account_box:"):
             response = requests.post(
-                "http://127.0.0.1:8000/signup",
+                BACKEND_URL,
                 json={"email": email, "password": password},
             )
             data = response.json()
