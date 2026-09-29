@@ -2,6 +2,8 @@
 
 A small notes application with a FastAPI backend, a Streamlit frontend, SQLAlchemy for database persistence, and Supabase authentication.
 
+**Live App:** https://mynotesapp.streamlit.app/
+
 ## Features
 
 * Sign up and log in with email and password
@@ -62,7 +64,7 @@ uv sync
 
 ## Running the Application
 
-### Start the backend
+### Start the Backend
 
 From the project root:
 
@@ -71,7 +73,7 @@ cd backend
 uv run uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-### Start the frontend
+### Start the Frontend
 
 Open a second terminal from the project root:
 
@@ -85,8 +87,8 @@ The Streamlit frontend reads the backend address from `.streamlit/secrets.toml`.
 
 Once the backend is running:
 
-* Swagger UI: `http://127.0.0.1:8000/docs`
-* ReDoc: `http://127.0.0.1:8000/redoc`
+* Swagger UI: http://127.0.0.1:8000/docs
+* ReDoc: http://127.0.0.1:8000/redoc
 
 ## API Endpoints
 
@@ -134,6 +136,7 @@ Depending on your Supabase authentication settings, a signup response may also i
 
 ```text
 Notes/
+
 ├── backend/
 │   ├── database.py       SQLAlchemy engine and database sessions
 │   ├── main.py           FastAPI application and routes
@@ -185,6 +188,10 @@ BACKEND_URL = "https://your-deployed-backend-url"
 ```
 
 The frontend uses this value to communicate with the deployed FastAPI backend.
+
+## Live App
+
+https://mynotesapp.streamlit.app/
 
 ## Notes
 
