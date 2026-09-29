@@ -23,13 +23,13 @@ with center:
 
         if st.button("Login", use_container_width=True, icon=":material/login:"):
             response = requests.post(
-                f"{BACKEND_URL}/login",
-                json={"email": email, "password": password},
+                f"{BACKEND_URL}/login", json={"email": email, "password": password}
             )
-            data = response.json()
+
             if response.status_code == 200:
+                data = response.json()
                 st.session_state["access_token"] = data["session"]["access_token"]
                 st.session_state["logged_in"] = True
-                st.success("Login Successful!")
+                st.success("Login successful")
             else:
-                st.error(data['detail'])
+                st.error(f"Login failed: {response.text}")

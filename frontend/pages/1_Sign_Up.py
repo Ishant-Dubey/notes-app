@@ -21,9 +21,11 @@ with center:
             width=325,
         )
 
-        if st.button("Sign Up", use_container_width=True, icon=":material/account_box:"):
+        if st.button(
+            "Sign Up", use_container_width=True, icon=":material/account_box:"
+        ):
             response = requests.post(
-                BACKEND_URL,
+                f"{BACKEND_URL}/signup",
                 json={"email": email, "password": password},
             )
             data = response.json()
@@ -32,4 +34,4 @@ with center:
                 st.session_state["logged_in"] = True
                 st.success("Sign Up Successful!")
             else:
-                st.error(data['detail'])
+                st.error(data["detail"])

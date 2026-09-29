@@ -8,7 +8,7 @@ all_notes = None
 if st.session_state.get("logged_in", False):
     token = st.session_state["access_token"]
     all_notes = requests.get(
-        BACKEND_URL, headers={"Authorization": f"Bearer {token}"}
+        f"{BACKEND_URL}/notes", headers={"Authorization": f"Bearer {token}"}
     )
 
 else:
@@ -50,7 +50,7 @@ if all_notes:
                             icon=":material/done_outline:",
                         ):
                             response = requests.put(
-                                f"{BACKEND_URL}/{note['id']}",
+                                f"{BACKEND_URL}/notes/{note['id']}",
                                 json={"title": title, "content": content},
                                 headers={"Authorization": f"Bearer {token}"},
                             )
@@ -76,7 +76,7 @@ if all_notes:
 
                 if delete_note:
                     response = requests.delete(
-                        f"{BACKEND_URL}/{note['id']}",
+                        f"{BACKEND_URL}/notes/{note['id']}",
                         headers={"Authorization": f"Bearer {token}"},
                     )
 

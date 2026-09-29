@@ -52,6 +52,9 @@ def signup(data: AuthRequest):
     return response
 
 
+from fastapi import HTTPException
+
+
 @app.post("/login")
 def login(data: AuthRequest):
     try:
@@ -61,7 +64,12 @@ def login(data: AuthRequest):
                 "password": data.password,
             }
         )
+
         return response
+
+    except Exception as e:
+        print("LOGIN ERROR:", repr(e))
+        raise HTTPException(status_code=401, detail=str(e))
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
@@ -72,7 +80,11 @@ def create_note(
     current_user=Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    if db.query(Note).filter(Note.title == note.title, Note.user_id == current_user.id).first():
+    if (
+        db.query(Note)
+        .filter(Note.title == note.title, Note.user_id == current_user.id)
+        .first()
+    ):
         raise HTTPException(
             status_code=400, detail="note with this name already exists"
         )
